@@ -2,8 +2,6 @@
 import json
 import requests
 from http.server import BaseHTTPRequestHandler
-import datetime
-import re
 
 # 推送API网关地址
 wecon_url = "https://service-2rtviz4c-1258742711.gz.apigw.tencentcs.com/release/WecomRobot"
@@ -49,8 +47,5 @@ def push_message():
 class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
-        push_message()
-        self.send_response(200)
-        self.send_header('Content-type','text/plain')
-        self.end_headers()
+        # push_message()
         return
