@@ -24,6 +24,8 @@ def send_msg(title, content):
 
 
 def checkin():
+    cookie = '_ga=GA1.2.2103527506.1645192628; _gid=GA1.2.1353685182.1645192628; koa:sess=eyJ1c2VySWQiOjEzNDA4NSwiX2V4cGlyZSI6MTY3MTExMjgwMzA2NSwiX21heEFnZSI6MjU5MjAwMDAwMDB9; koa:sess.sig=kXVPuCq0-U9Ob5IdqoT8ov2mXQg'
+    referer = 'https://glados.rocks/console/checkin'
     url = "https://glados.rocks/api/user/checkin"
     url2 = "https://glados.rocks/api/user/status"
     origin = "https://glados.rocks"
