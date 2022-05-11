@@ -25,9 +25,9 @@ def push_msg(title, content):
     requests.post(push_url, data=body, headers=headers)
 
 
-def checkin():
-    cookie = '_ga=GA1.2.2103527506.1645192628; _gid=GA1.2.1353685182.1645192628; koa:sess=eyJ1c2VySWQiOjEzNDA4NSwiX2V4cGlyZSI6MTY3MTExMjgwMzA2NSwiX21heEFnZSI6MjU5MjAwMDAwMDB9; koa:sess.sig=kXVPuCq0-U9Ob5IdqoT8ov2mXQg'
-    referer = 'https://glados.rocks/console/checkin'
+@app.get('/gla')
+async def gla():
+    cookie = '_ga=GA1.2.360396571.1652294051; _gid=GA1.2.1042683980.1652294051; koa:sess=eyJ1c2VySWQiOjEzNDA4NSwiX2V4cGlyZSI6MTY3ODIxNDEwODMxMCwiX21heEFnZSI6MjU5MjAwMDAwMDB9; koa:sess.sig=eR4Pv07mpEFifxEjTvJctbH_dHI; _gat_gtag_UA_104464600_2=1'
     url = "https://glados.rocks/api/user/checkin"
     url2 = "https://glados.rocks/api/user/status"
     origin = "https://glados.rocks"
@@ -53,5 +53,9 @@ def checkin():
 
 @app.get('/')
 async def index():
-    checkin()
-    return "<h1>搭建成功</h1>"
+    return {
+        "isBase64Encoded": False,
+        "statusCode": 200,
+        "headers": {"Content-Type": "text/html"},
+        "body": "<html><body><h1>搭建成功</h1></body></html>"
+    }
