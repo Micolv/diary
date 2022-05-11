@@ -7,4 +7,4 @@ class handler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
-        return ("<h1>Flask</h1>")
+        return "<h1>Flask</h1>"
