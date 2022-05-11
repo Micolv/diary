@@ -21,7 +21,7 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/api/user"
+      "destination": "/api/index"
     }
   ]
 }
