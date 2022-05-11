@@ -12,5 +12,5 @@ def get_pic():
 
 @app.get('/')
 async def hello():
-    res = get_bing()
+    res = get_pic()
     return {'message': res}
