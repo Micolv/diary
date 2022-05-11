@@ -4,9 +4,6 @@ import os
 import json
 
 app = FastAPI()
-index_html = '''
-<html><body><h1>搭建成功</h1></body></html>
-'''
 
 
 def get_pic():
@@ -56,4 +53,4 @@ async def gla():
 
 @app.get('/')
 async def index():
-    return index_html
+    return {"msg": "搭建成功"}
