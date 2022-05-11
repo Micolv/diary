@@ -1,8 +1,10 @@
-import requests
+from http.server import BaseHTTPRequestHandler
 
 
-def get_bing():
-    bing_url = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN"
-    res = requests.get(bing_url).json()
-    bing_pic = "https://cn.bing.com/"+res["images"][0]["url"]
-    return bing_pic
+class handler(BaseHTTPRequestHandler):
+
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()
+        return ("<h1>Flask</h1>")
