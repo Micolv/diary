@@ -1,10 +1,19 @@
-from http.server import BaseHTTPRequestHandler
+from fastapi import FastAPI
+
+app = FastAPI(
+    title="Vercel FastAPI template",
+    description="A starter template for FastAPI backends in Vercel deployments",
+    version="0.1.0",
+    docs_url='/api',
+    openapi_url='/api/openapi.json',
+    redoc_url=None
+)
 
 
-class handler(BaseHTTPRequestHandler):
+@app.get('/api/hello')
+async def hello():
+    return {'message': 'Hello world!!'}
 
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-type', 'text/plain')
-        self.end_headers()
-        return "<h1>Flask</h1>"
+@app.get('/')
+async def hello():
+    return {'message': 'Hello'}
