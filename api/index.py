@@ -12,17 +12,17 @@ def get_pic():
     return r["imgurl"]
 
 
-def send_msg(title, content):
+def push_msg(title, content):
     data = {
         "secret": "vanmay",
         "type": "textcard",
         "title": title,
         "content": content,
     }
-    url = "https://wpush-thund1r.vercel.app/send"
+    push_url = "https://wpush-thund1r.vercel.app/send"
     body = json.dumps(data).encode(encoding='utf-8')
     headers = {'Content-Type': 'application/json'}
-    requests.post(wecom_url, data=body, headers=headers)
+    requests.post(push_url, data=body, headers=headers)
 
 
 def checkin():
@@ -48,7 +48,7 @@ def checkin():
     else:
         title = 'GLaDOS签到失败'
         content = 'Cookie过期'
-    send_msg(title, content)
+    push_msg(title, content)
 
 
 @app.get('/')
