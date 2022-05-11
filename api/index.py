@@ -1,7 +1,8 @@
-from flask import Flask, Response
-app = Flask(__name__)
+import requests
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def catch_all(path):
-    return Response("<h1>Flask</h1><p>You visited: /%s</p>" % (path), mimetype="text/html")
+
+def get_bing():
+    bing_url = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN"
+    res = requests.get(bing_url).json()
+    bing_pic = "https://cn.bing.com/"+res["images"][0]["url"]
+    return bing_pic
