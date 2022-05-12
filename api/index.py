@@ -33,7 +33,7 @@ def verify_params(item):
 
 
 @app.get('/glados')
-async def glados():
+async def glados_checkin():
     return glados.checkin()
 
 
