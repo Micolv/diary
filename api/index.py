@@ -2,8 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 import requests
 import json
-import glados
-import config
+from * import config,glados
 
 
 app = FastAPI()
