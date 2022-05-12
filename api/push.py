@@ -13,7 +13,7 @@ def push_msg(title, content):
             "title": title,
             "content": content
         }
-    elif(push_type="2"):
+    elif(push_type == "2"):
         push_url = "https://sctapi.ftqq.com/{}.send".format(push_token)
         data = {
             "title": title,
