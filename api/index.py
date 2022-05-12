@@ -10,13 +10,15 @@ html = """
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="icon" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/svgs/regular/calendar-check.svg">
         <title>VercelCheckin</title>
     </head>
     <body>
         <h1>VercelCheckin is running</h1>
-        <p>推送类型:<%PUSHTYPE%/></p>
-        <p>推送秘钥:<%PUSHTOKEN%/></p>
-        <p>GLADOS配置:<%GLADOS%/></p>
+        <p>配置状态：</p>
+        <p>推送类型：<%PUSHTYPE%/></p>
+        <p>推送秘钥：<%PUSHTOKEN%/></p>
+        <p>GLADOS配置：<%GLADOS%/></p>
         <script>
         </script>
     </body>
@@ -27,7 +29,7 @@ html = """
 def verify_params(item):
     res = config.get(item)
     if res:
-        return res
+        return "有"
     else:
         return "无"
 

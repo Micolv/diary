@@ -26,7 +26,7 @@ def checkin():
         else:
             title = 'GLaDOS签到失败'
             content = 'Cookie过期'
-        msg = title+","+content
+        msg = title+"，"+content
         push.push_msg(title, content)
         return {"code": 200, "msg": msg}
     else:
