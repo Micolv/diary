@@ -1,4 +1,4 @@
-from * import config
+from . import config
 import json
 import requests
 
