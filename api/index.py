@@ -25,7 +25,11 @@ html = """
 
 
 def verify_params(item):
-    return res = config.get(item) if config.get(item) else "无"
+    res = config.get(item)
+    if res:
+        return res
+    else:
+        return "无"
 
 
 @app.get('/glados')
