@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 import requests
 import json
-from . import config,glados
+from . import config, glados
 
 
 app = FastAPI()
@@ -24,6 +24,10 @@ html = """
 """
 
 
+def verify_params(item):
+    return res = config.get(item) if config.get(item) else "无"
+
+
 @app.get('/glados')
 async def glados():
     return glados.checkin()
@@ -31,7 +35,7 @@ async def glados():
 
 @app.get('/')
 async def index():
-    push_type = config.get("push_type")
-    push_token = config.get("push_token")
-    glados_cookie = config.get("glados_cookie")
+    push_type = verify_params("push_type")
+    push_token = verify_params("push_token")
+    glados_cookie = verify_params("glados_cookie")
     return HTMLResponse(html.replace('<%PUSHTYPE%/>', push_type).replace('<%PUSHTOKEN%/>', push_token).replace('<%GLADOS%/>', glados_cookie))
