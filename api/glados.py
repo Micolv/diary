@@ -5,7 +5,7 @@ import requests
 
 def checkin():
     if config.get("glados_cookie"):
-        cookie = '_ga=GA1.2.360396571.1652294051; _gid=GA1.2.1042683980.1652294051; koa:sess=eyJ1c2VySWQiOjEzNDA4NSwiX2V4cGlyZSI6MTY3ODIxNDEwODMxMCwiX21heEFnZSI6MjU5MjAwMDAwMDB9; koa:sess.sig=eR4Pv07mpEFifxEjTvJctbH_dHI; _gat_gtag_UA_104464600_2=1'
+        cookie = config.get("glados_cookie")
         url = "https://glados.rocks/api/user/checkin"
         url2 = "https://glados.rocks/api/user/status"
         origin = "https://glados.rocks"
