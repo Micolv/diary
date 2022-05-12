@@ -9,7 +9,7 @@ def push_msg(title, content):
     if(push_type == "1"):
         push_url = 'http://www.pushplus.plus/send'
         data = {
-            "token": token,
+            "token": push_token,
             "title": title,
             "content": content
         }
