@@ -1,9 +1,23 @@
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 import requests
 import os
 import json
 
 app = FastAPI()
+html = """
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DailyCheckin</title>
+    </head>
+    <body>
+        <h1>DailyCheckin is running</h1>
+        <script>
+        </script>
+    </body>
+</html>
+"""
 
 
 def get_pic():
@@ -53,4 +67,4 @@ async def gla():
 
 @app.get('/')
 async def index():
-    return {"msg": "搭建成功"}
+    return HTMLResponse(html)
