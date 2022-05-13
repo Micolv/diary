@@ -41,7 +41,7 @@ async def glados_checkin():
 
 @app.get('/')
 async def index():
-    push_type = config.get("push_type")
-    push_token = config.get("push_token")
-    glados_cookie = config.get("glados_cookie")
+    push_type = verify_params("push_type")
+    push_token = verify_params("push_token")
+    glados_cookie = verify_params("glados_cookie")
     return HTMLResponse(html.replace('<%PUSHTYPE%/>', push_type).replace('<%PUSHTOKEN%/>', push_token).replace('<%GLADOS%/>', glados_cookie))
