@@ -16,6 +16,9 @@ def push_msg(title, content):
             "title": title,
             "content": content
         }
+        body = json.dumps(data).encode(encoding='utf-8')
+        headers = {'Content-Type': 'application/json'}
+        requests.post(push_url, data=body, headers=headers)
     elif(push_type == "2"):
         print("server酱")
         push_url = "https://sctapi.ftqq.com/{}.send".format(push_token)
@@ -23,6 +26,4 @@ def push_msg(title, content):
             "title": title,
             "desp": content,
         }
-    body = json.dumps(data).encode(encoding='utf-8')
-    headers = {'Content-Type': 'application/json'}
-    requests.post(push_url, data=body, headers=headers)
+        requests.post(push_url, data)
