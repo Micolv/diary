@@ -6,7 +6,10 @@ import requests
 def push_msg(title, content):
     push_type = config.get("push_type")
     push_token = config.get("push_token")
+    print("类型", push_type)
+    print("秘钥", push_token)
     if(push_type == "1"):
+        print("pushplus")
         push_url = 'http://www.pushplus.plus/send'
         data = {
             "token": push_token,
@@ -14,6 +17,7 @@ def push_msg(title, content):
             "content": content
         }
     elif(push_type == "2"):
+        print("server酱")
         push_url = "https://sctapi.ftqq.com/{}.send".format(push_token)
         data = {
             "title": title,
