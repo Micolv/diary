@@ -1,4 +1,4 @@
-from . import config,push
+from . import config, push
 import json
 import requests
 
@@ -19,15 +19,16 @@ def checkin():
         state = requests.get(url2, headers={
             'cookie': cookie, 'referer': referer, 'origin': origin, 'user-agent': useragent})
         if 'message' in checkin.text:
-            title = 'GLaDOS签到成功'
-            time = state.json()['data']['leftDays']
-            time = time.split('.')[0]
-            content = checkin.json()['message'] + '，有效期还剩' + time + '天'
+            email = state.json()['data']['email']
+            time = state.json()['data']['leftDays'].split('.')[0]
+            message = checkin.json()['message']
+            title = 'GLaDOS签到情况：' + \
+                checkin.json()['message'] + '，有效期还剩' + time + '天'
+            content = "· 账号：" + email + "\n· 剩余天数："+time+"天\n· 签到信息：" + message
         else:
-            title = 'GLaDOS签到失败'
-            content = 'Cookie过期'
-        msg = title+"，"+content
+            title = 'GLaDOS签到失败，请更新Cookie'
+            content = 'Cookie过期，请更新'
         push.push_msg(title, content)
-        return {"code": 200, "msg": msg}
+        return {"code": 200, "msg": title}
     else:
-        return {"code": 403, "msg": "请在环境变量中配置GLADOS_COOKIE"}
+        return {"code": 403, "msg": "请在Vercel环境变量中配置GLADOS_COOKIE"}
