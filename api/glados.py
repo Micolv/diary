@@ -22,7 +22,7 @@ def checkin():
             email = state['data']['email']
             time = state['data']['leftDays'].split('.')[0]
             message = checkin['message']
-            if check['code'] == "0":
+            if checkin['code'] == "0":
                 title = "Glados签到成功，" + message
                 content = "账号：" + email + "\n\n剩余天数："+time + \
                     "天\n\n签到信息：" + message + "\n\n - - - "
@@ -30,9 +30,10 @@ def checkin():
                 title = "Glados签到失败，" + message
                 content = "账号：" + email + "\n\n剩余天数："+time + \
                     "天\n\n错误信息：" + message + "\n\n - - - "
-        except:
+        except Exception as errorMsg:
+            print('产生错误了:', errorMsg)
             title = "Glados签到失败，未知错误"
-            content = "错误信息：" + message + "\n\n - - - "
+            content = "错误信息：" + errorMsg + "\n\n - - - "
         push.push_msg(title, content)
         return {"code": 200, "msg": title}
     else:
