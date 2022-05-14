@@ -10,6 +10,7 @@ def push_msg(title, content):
         push_url = 'http://www.pushplus.plus/send'
         data = {
             "token": push_token,
+            "template": "markdown",
             "title": title,
             "content": content
         }

@@ -14,20 +14,25 @@ def checkin():
         payload = {
             'token': 'glados.network'
         }
-        checkin = requests.post(url, headers={'cookie': cookie, 'referer': referer, 'origin': origin,
-                                'user-agent': useragent, 'content-type': 'application/json;charset=UTF-8'}, data=json.dumps(payload))
-        state = requests.get(url2, headers={
-            'cookie': cookie, 'referer': referer, 'origin': origin, 'user-agent': useragent})
-        if 'message' in checkin.text:
-            email = state.json()['data']['email']
-            time = state.json()['data']['leftDays'].split('.')[0]
-            message = checkin.json()['message']
-            title = 'GLaDOS签到情况：' + \
-                checkin.json()['message'] + '，有效期还剩' + time + '天'
-            content = "· 账号：" + email + "\n· 剩余天数："+time+"天\n· 签到信息：" + message
-        else:
-            title = 'GLaDOS签到失败，请更新Cookie'
-            content = 'Cookie过期，请更新'
+        try:
+            checkin = requests.post(url, headers={'cookie': cookie, 'referer': referer, 'origin': origin,
+                                    'user-agent': useragent, 'content-type': 'application/json;charset=UTF-8'}, data=json.dumps(payload)).json()
+            state = requests.get(url2, headers={
+                'cookie': cookie, 'referer': referer, 'origin': origin, 'user-agent': useragent}).json()
+            email = state['data']['email']
+            time = state['data']['leftDays'].split('.')[0]
+            message = checkin['message']
+            if check['code'] == "0":
+                title = "Glados签到成功，" + message
+                content = "账号：" + email + "\n\n剩余天数："+time + \
+                    "天\n\n签到信息：" + message + "\n\n - - - "
+            else:
+                title = "Glados签到失败，" + message
+                content = "账号：" + email + "\n\n剩余天数："+time + \
+                    "天\n\n错误信息：" + message + "\n\n - - - "
+        except:
+            title = "Glados签到失败，未知错误"
+            content = "错误信息：" + message + "\n\n - - - "
         push.push_msg(title, content)
         return {"code": 200, "msg": title}
     else:
