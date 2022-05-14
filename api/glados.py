@@ -19,22 +19,24 @@ def checkin():
                                     'user-agent': useragent, 'content-type': 'application/json;charset=UTF-8'}, data=json.dumps(payload)).json()
             state = requests.get(url2, headers={
                 'cookie': cookie, 'referer': referer, 'origin': origin, 'user-agent': useragent}).json()
-            email = state['data']['email']
-            time = state['data']['leftDays'].split('.')[0]
-            message = checkin['message']
-            if checkin['code'] == "0":
+            if checkin['code'] == 0 or checkin['code'] == 1:
+                email = state['data']['email']
+                time = state['data']['leftDays'].split('.')[0]
+                message = checkin['message']
                 title = "Glados签到成功，" + message
                 content = "账号：" + email + "\n\n剩余天数："+time + \
                     "天\n\n签到信息：" + message + "\n\n - - - "
+                push_msg(title, content)
+                return {"code": 200, "msg": title}
             else:
+                message = checkin['message']
                 title = "Glados签到失败，" + message
-                content = "账号：" + email + "\n\n剩余天数："+time + \
-                    "天\n\n错误信息：" + message + "\n\n - - - "
+                content = "错误信息：" + message + "\n\n - - - "
         except Exception as errorMsg:
-            print('产生错误了:', errorMsg)
-            title = "Glados签到失败，未知错误"
-            content = "错误信息：" + errorMsg + "\n\n - - - "
-        push.push_msg(title, content)
+            print("Glados签到异常:", errorMsg)
+            title = "Glados签到异常" + errorMsg
+            content = "异常信息：" + errorMsg + "\n\n - - - "
+        push_msg(title, content)
         return {"code": 200, "msg": title}
     else:
         return {"code": 403, "msg": "请在Vercel环境变量中配置GLADOS_COOKIE"}
