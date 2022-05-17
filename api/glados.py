@@ -24,9 +24,9 @@ def checkin():
             message = checkin['message']
             if 'list' in checkin:
                 email = state['data']['email']
-                time = state['data']['leftDays'].split('.')[0]
+                leftDays = state['data']['leftDays'].split('.')[0]
                 title = "Glados签到成功，" + message
-                content = "账号：" + email + "\n\n剩余天数："+time + \
+                content = "账号：" + email + "\n\n剩余天数："+leftDays + \
                     "天\n\n成功信息：" + message + "\n\n - - - "
                 push.push_msg(title, content)
                 code = 200
