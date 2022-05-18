@@ -32,6 +32,6 @@ async def glados_checkin():
 
 @app.get('/')
 async def index():
-    push = bool(config.get("pushplus") or config.get("server"))
-    glados = bool(config.get("glados_cookie"))
+    push = str(bool(config.get("pushplus") or config.get("server")))
+    glados = str(bool(config.get("glados_cookie")))
     return HTMLResponse(html.replace('<%PUSH%/>', push).replace('<%GLADOS%/>', glados))
