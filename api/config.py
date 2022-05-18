@@ -2,10 +2,9 @@
 
 import os
 SYS_CONFIG = {
-    # 推送类型，1为pushplus，2为server酱
-    "push_type": "",
-    # 推送秘钥
-    "push_token": ""
+    "pushplus": "",
+    "server": "",
+    "glados_cookie": ""
 }
 
 

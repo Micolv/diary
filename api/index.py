@@ -16,22 +16,13 @@ html = """
     <body>
         <h1>VercelCheckin is running</h1>
         <p>配置状态：</p>
-        <p>推送类型：<%PUSHTYPE%/></p>
-        <p>推送秘钥：<%PUSHTOKEN%/></p>
+        <p>推送配置：<%PUSH%/></p>
         <p>GLADOS配置：<%GLADOS%/></p>
         <script>
         </script>
     </body>
 </html>
 """
-
-
-def verify_params(item):
-    res = config.get(item)
-    if res:
-        return "有"
-    else:
-        return "无"
 
 
 @app.get('/glados')
@@ -41,7 +32,6 @@ async def glados_checkin():
 
 @app.get('/')
 async def index():
-    push_type = verify_params("push_type")
-    push_token = verify_params("push_token")
-    glados_cookie = verify_params("glados_cookie")
-    return HTMLResponse(html.replace('<%PUSHTYPE%/>', push_type).replace('<%PUSHTOKEN%/>', push_token).replace('<%GLADOS%/>', glados_cookie))
+    push = bool(config.get("pushplus") or config.get("server"))
+    glados = bool(config.get("glados_cookie"))
+    return HTMLResponse(html.replace('<%PUSH%/>', push).replace('<%GLADOS%/>', glados))
