@@ -9,7 +9,7 @@ def push_msg(title, content):
     if pushplus:
         push_url = 'http://www.pushplus.plus/send'
         data = {
-            "token": push_token,
+            "token": pushplus,
             "template": "markdown",
             "title": title,
             "content": content
@@ -18,7 +18,7 @@ def push_msg(title, content):
         headers = {'Content-Type': 'application/json'}
         requests.post(push_url, data=body, headers=headers)
     elif server:
-        push_url = "https://sctapi.ftqq.com/{}.send".format(push_token)
+        push_url = "https://sctapi.ftqq.com/{}.send".format(server)
         data = {
             "title": title,
             "desp": content,
