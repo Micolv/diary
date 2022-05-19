@@ -26,10 +26,9 @@ def get_pwd_md5(eppwd):
 def login():
     login_url = "https://web.everphoto.cn/api/auth"
     pwd = get_pwd_md5(eppwd)
-    if epphone[0] != "+":
-        epphone = "+86" + epphone
+    phone = epphone if epphone[0] == "+" else "+86" + epphone
     data = {
-        "mobile": epphone,
+        "mobile": phone,
         "password": pwd
     }
     res = requests.post(login_url, data=data, headers=header).json()
