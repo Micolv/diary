@@ -49,11 +49,11 @@ def checkin():
                 title = "时光相册签到成功"
                 todayReward = res["data"]["reward"]/1024/1024
                 content = "账号："+name+"\n\n今日获得："+str(todayReward)+"M\n\n明日可得："+str(tomorrowReward) + \
-                    "M\n\n总共获得："+str(round(totalReward, 2))+"G。\n\n - - - "
+                    "M\n\n总共获得："+str(round(totalReward, 2))+"G\n\n - - - "
             else:
                 title = "时光相册签到重复"
                 content = "账号："+name+"\n\n明日可得："+str(tomorrowReward) + \
-                    "M\n\n总共获得："+str(round(totalReward, 2))+"G。\n\n - - - "
+                    "M\n\n总共获得："+str(round(totalReward, 2))+"G\n\n - - - "
             code = 200
         except Exception as errorMsg:
             print("时光相册签到异常", errorMsg)
