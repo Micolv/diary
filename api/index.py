@@ -10,7 +10,7 @@ html = """
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="icon" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/svgs/regular/calendar-check.svg">
+        <link rel="icon" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/svgs/regular/calendar-check.svg">
         <title>VercelCheckin</title>
     </head>
     <body>
