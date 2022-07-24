@@ -63,27 +63,30 @@ show_html = '''
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diary</title>
+    <title>WPUSH</title>
 </head>
 
 <body>
-    <section>
-        <div class="container">
-            <div class="pic">
-                <span>
-                    <img
-                        src='<&p&>'>
-                    </img>
-                </span>
+    <div id="app">
+        <!-- 显示消息 -->
+        <section>
+            <div class="container">
+                <div class="pic">
+                    <span>
+                        <img
+                            src='<&p&>'>
+                        </img>
+                    </span>
+                </div>
+                <h2 class="title">
+                    <&t&>
+                </h2>
+                <h3 class="content">
+                    <&c&>
+                </h3>
             </div>
-            <h2 class="title">
-                <&t&>
-            </h2>
-            <h3 class="content">
-                <&c&>
-            </h3>
-        </div>
-    </section>
+        </section>
+    </div>
 </body>
 <style>
     * {
@@ -151,6 +154,9 @@ show_html = '''
         justify-content: center;
         min-height: 100vh;
     }
+    .pic{display:none}
+    .title{display:none}
+    .content{display:none}
 </style>
 
 </html>
@@ -164,4 +170,11 @@ async def index():
 
 @app.get("/show/")
 async def show(p=Query(None), t=Query(None), c=Query(None)):
-    return HTMLResponse(show_html.replace("<&p&>", p).replace("<&t&>", t).replace("<&c&>", c))
+    html = show_html
+    if p != None:
+        html = html.replace(".pic{display:none}", "").replace("<&p&>", p)
+    if t != None:
+        html = html.replace(".title{display:none}", "").replace("<&t&>", t)
+    if c != None:
+        html = html.replace(".content{display:none}", "").replace("<&c&>", c)
+    return HTMLResponse(html)
