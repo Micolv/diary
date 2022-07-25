@@ -72,11 +72,9 @@ show_html = '''
         <section>
             <div class="container">
                 <div class="pic">
-                    <span>
-                        <img
-                            src='<&p&>'>
-                        </img>
-                    </span>
+                    <img
+                        src='<&p&>'>
+                    </img>
                 </div>
                 <h2 class="title">
                     <&t&>
@@ -103,25 +101,13 @@ show_html = '''
         width: 90%;
     }
 
-    article {
-        padding: 16px;
-        background-color: white;
-        border-radius: 8px;
-        margin-bottom: 16px;
-    }
-
-    pre {
-        white-space: pre-wrap;
-        word-break: break-all;
-        margin: 0px;
-        font-size: 14px;
-    }
-
     .pic {
         margin: 16px 0;
         padding: 12px;
         background-color: white;
         border-radius: 8px;
+        text-align: center;
+        font-size: 0;
     }
 
     .title {
@@ -133,14 +119,6 @@ show_html = '''
         max-width: 100%;
         max-height: 100%;
     }
-
-    span {
-        font-size: 0;
-        display: table-cell;
-        text-align: center;
-        vertical-align: middle;
-    }
-
 
     .content {
         color: white;
