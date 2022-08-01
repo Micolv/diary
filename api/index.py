@@ -69,24 +69,21 @@ show_html = '''
 </head>
 
 <body>
-    <div id="app">
-        <!-- 显示消息 -->
-        <section>
-            <div class="container">
-                <div class="pic">
-                    <img
-                        src='<&p&>'>
-                    </img>
-                </div>
-                <h2 class="title">
-                    <&t&>
-                </h2>
-                <h3 class="content">
-                    <&c&>
-                </h3>
+    <section>
+        <div class="container">
+            <div class="pic">
+                <img
+                    src='<&p&>'>
+                </img>
             </div>
-        </section>
-    </div>
+            <h2 class="title">
+                <&t&>
+            </h2>
+            <h3 class="content">
+                <&c&>
+            </h3>
+        </div>
+    </section>
 </body>
 <style>
     * {
@@ -95,13 +92,20 @@ show_html = '''
         box-sizing: border-box;
     }
 
+    .container {
+        width: 50%;
+    }
+
+    @media screen and (max-width: 1200px) {
+        .container {
+            width: 90%;
+        }
+    }
+
     body {
         background: linear-gradient(to bottom right, #0184cf, #77A1D3, #a0eacf);
     }
 
-    .container {
-        width: 90%;
-    }
 
     .pic {
         margin: 16px 0;
