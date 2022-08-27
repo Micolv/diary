@@ -1,7 +1,5 @@
 from fastapi import FastAPI, Query
 from fastapi.responses import HTMLResponse
-import requests
-import json
 
 
 app = FastAPI()
