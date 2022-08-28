@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Query
 from fastapi.responses import HTMLResponse
+import uvicorn
 
 
 app = FastAPI()
@@ -162,3 +163,7 @@ async def show(p=Query(None), t=Query(None), c=Query(None)):
         c = c.replace("\\n", "<br/>")
         html = html.replace(".content{display:none}", "").replace("<&c&>", c)
     return HTMLResponse(html)
+
+if __name__ == '__main__':
+    uvicorn.run(app='index:app', host="127.0.0.1",
+                port=8000, reload=True, debug=True)
